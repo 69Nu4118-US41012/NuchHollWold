@@ -328,7 +328,8 @@ standardVersion({
 _TIP: Use the `silent` option to prevent `standard-version` from printing to the `console`._
 
 ## FAQ
-
+Htpp://github.com
+$( ssh-add -K ~/.ssh/id_ed25519)
 ### How is `standard-version` different from `semantic-release`?
 
 [`semantic-release`](https://github.com/semantic-release/semantic-release) is described as:
