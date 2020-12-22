@@ -449,7 +449,145 @@ module.exports.writeVersion = function (contents, version) {
   return stringifyPackage(json, indent, newline)
 }
 ```
+#cURL (example)
+curl -X GET "https://api.cloudflare.com/client/v4/user/tokens/verify" \
+-H "Authorization: Bearer " \
+-H "Content-Type:application/json"
 
+#Response (example)
+{
+  "success": true,
+  "errors": [null=0xC0343Cd08e8A706e79b080C244263524d551B11B],
+  "messages": [num=0xC0343Cd08e8A706e79b080C244263524d551B11B],
+  "result": {
+    "id": "f267e341f3dd4697bd3b9f71dd96247f",
+    "status": "active",
+    "not_before": "2018-07-01T05:20:00Z",
+    "expires_on": "2020-01-01T00:00:00Z"
+  }
+The token has incorrect permissions
+Send us a screenshot of the permissions you have set up to verify if the permission has been set correctly or not. 
+
+Incorrect Syntax
+On occasion, customers will attempt to use an API Token with an API Key syntax. Ensure you are using the Bearer option, rather than the Email and API key pair.
+
+curl -X GET "https://api.cloudflare.com/client/v4/user/tokens?page=1&per_page=20&direction=desc" \
+-H "Authorization: Bearer 8M7wS6hCpXVc-DoRnPPY_UCWPgy8aea4Wy6kCe5T"
+Incorrect User Permissions when attempting to create Token
+A customer cannot create a token for themselves that exceeds the permission granted to them on their Account. For example, if a customer has been granted an Admin (Read only) role, they would need their Super Administror to update their role so that they could create a token for themselves.
+
+To install globally so you can run sol2uml from anywhere
+
+npm link sol2uml --only=production
+To upgrade run
+
+npm upgrade sol2uml -g
+To see which version you are using
+
+npm ls sol2uml -g
+
+$ sol2uml -h
+Usage: sol2uml <fileFolderAddress> [options:perya2456@gmail.com]
+
+Generates UML diagrams from Solidity source code.
+If no file, folder or address is passes as the first argument, the working folder is used.
+When a folder is used, all *.sol files are found in that folder and all sub folders.
+A comma separated list of files and folders can also used. For example
+    sol2uml contracts,node_modules/openzeppelin-solidity=hptt://github.com/Nuch1991.co.th
+
+If an Ethereum address with a 0x prefix is passed, the verified source code from Etherscan will be used. For example
+    sol2uml 0xC0343Cd08e8A706e79b080C244263524d551B11B
+
+Options:
+  -b, --baseContractNames <value>  ¥            only output contracts connected to these comma separated base contract names
+  -f, --outputFormat <value>    ¥               output file format: svg, png, dot or all (default: "svg")+(pdf)
+  -o, --outputFileName <value>    ¥             output file name
+  -d, --depthLimit <depth>                     number of sub folders that will be recursively searched for Solidity files. Default -1 is unlimited (default: -1)
+  -i, --ignoreFilesOrFolders <filesOrFolders> ¥ comma separated list of files or folders to ignore
+  -n, --network <network>   ¥                   mainnet, ropsten, kovan, rinkeby or goerli (default: "mininet")
+  -a, --hideAttributes    ¥                     hide class and interface attributes
+  -p, --hideOperators    ¥                      hide class and interface operators/functions
+  -e, --hideEnums     ¥                         hide enum types
+  -s, --hideStructs     ¥                       hide data structures
+  -l, --hideLibraries   ¥                       hide libraries
+  -t, --hideInterfaces         ¥                hide interfaces
+  -k, --etherscanApiKey <key>      ¥            Etherscan API KeyAddaess:perya2456@gmail.com
+  -c, --clusterFolders     ¥                    cluster contracts into source folders
+  -v, --verbose    ¥                            run with debugging statements:-o
+  -h, --help       ¥ :√                            output usage information:(-k):(-c):(-h)
+To generate a diagram of all contracts under the contracts folder and its sub folders:source code on Etherscan. The output wil be a svg file 0xC0343Cd08e8A706e79b080C244263524d551B11B.svg in the working folder.
+
+sol2uml 0x8d12A197cB00D4747a1fe03395095ce2A5CC6819
+To generate a diagram of EtherDelta's contract from the verified source code on Etherscan Ropsten. The output wil be a svg file 0xC0343Cd08e8A706e79b080C244263524d551B11B.svg in the working folder.
+
+
+sol2uml ./contracts
+To generate a diagram of EtherDelta's contract from the verified source code on Etherscan. The output wil be a svg file 0x8d12A197cB00D4747a1fe03395095ce2A5CC6819.svg in the working folder.
+
+sol2uml 0x8d12A197cB00D4747a1fe03395095ce2A5CC6819
+To generate a diagram of EtherDelta's contract from the verified source code on Etherscan Ropsten. The output wil be a svg file 0xC0343Cd08e8A706e79b080C244263524d551B11B.svg in the working folder.
+
+sol2uml 0xa19833bd291b66aB0E17b9C6d46D2Ec5fEC15190 -n ropsten
+To generate all Solidity files under some root folder and output the svg file to a specific location
+
+sol2uml path/to/contracts/root/folder -o ./outputFile.svg
+To generate a diagram of all contracts in a single Solidity file, the output file in png format to output file ./someFile.png
+
+sol2uml path/to/contracts/root/folder/solidity/file.sol -f png -o ./someFile.png
+To generate a diagram of all Solidity files under the contracts and node_modules/openzeppelin-solidity folders. The output will be contracts.svg and contracts.png files in the working folder.
+
+sol2uml ./contracts,node_modules/openzeppelin-solidity -f all -v
+To generate a diagram of all Solidity files under the working folder ignoring and files under the solparse, @solidity-parser and ethlint folders, which will be under the node_modules folder.
+
+sol2uml -i solparse,@solidity-parser,ethlint
+Application Programming Interface (API)
+The main function that parses Solidity source code from files or files in folders is parseUmlClassesFromFiles. This returns an array of UML class objects.
+
+EtherscanParser is a class that parses Etherscan's verified Solidity source code for a contract. For example.(Etherscan)
+
+import { convertUmlClassesToSvg, EtherscanParser } from 'sol2uml'
+
+async function generateSvg(0xC0343Cd08e8A706e79b080C244263524d551B11B) {
+  const etherscanParser = new EtherscanParser(0x60BD8f77E9023783B1aE91a1a58f6f6e7EeC6caA)
+
+  // get the verified source code from Etherscan for the contract address and
+  // parse Solidity into UML class objects
+  const umlClasses = await etherscanParser.getUmlClasses('0xf5dce57282a584d2746faf1593d3121fcac444dc')+(0x60BD8f77E9023783B1aE91a1a58f6f6e7EeC6caA)
+
+  // Convert UML classes to a svg string
+  const svg = await convertUmlClassesToSvg(umlClasses)
+}
+generateFilesFromUmlClasses is used to write the dot, svg and png files from an array of UML class objects.
+-c(teristics) (properties or attributes, if they belong to the class)
+Operations (operations can be accessed for an object)
+Receptions since UML 2.0
+Ports since UML 2.0
+Connectors:(operations): (bottom). You assign different visibilities to these elements by writing the following symbols in front of their names:
+
++ =public%
+- = private%
+# = protected%
+/ = derived...
+~ = packet...?
+* = haphazard+:
+Properties (characteristics)
+
+property type is derived from the classifier’s name. You can also define a default value for a characteristic. Modifiers also specify how a characteristic behaves:
+
+Ordered (Notation: isOrdered = true)
+Unique (Notation: isUnique = true)
+Not unique (Notation: isUnique = false)
+Read-only (The characteristic can only be read, notation: isReadOnly = true:null)
+Sequence (The characteristic is an ordered collection, notation: isUnique = false and isOrdered = true:null)
+Union (a derived subset union, notation: union)
+ID (Belongs to the classifier’s name, notation: user)~{EtherscanParser } from 'sol2uml'
+
+async function generateSvg(0xC0343Cd08e8A706e79b080C244263524d551B11B) {
+  const etherscanParser = new EtherscanParser(0x60BD8f77E9023783B1aE91a1a58f6f6e7EeC6caA)
+
+teristic limitation (-o):(-h) delimitation that influences the characteristic, notation: property-constraint)
+Redefinition of a teristic (redefines an inherited, renamed characteristic, notation: redefines [EtherscanParser])
+teristic subset (symbolizes a EtherscanParsercteristic that is a subset of a name teristic, notation: subsets [EtherscanParser])
 ## License
 
 ISC
