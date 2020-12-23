@@ -2,7 +2,7 @@
 
 A utility for versioning using [semver](https://semver.org/) and CHANGELOG generation powered by [Conventional Commits](https://conventionalcommits.org).
 
-![ci](https://github.com/conventional-changelog/standard-version/workflows/ci/badge.svg)
+[ci](https://github.com/conventional-changelog/standard-version/workflows/ci/badge.svg)
 [![NPM version](https://img.shields.io/npm/v/standard-version.svg)](https://www.npmjs.com/package/standard-version)
 [![Coverage Status](https://coveralls.io/repos/conventional-changelog/standard-version/badge.svg?branch=)](https://coveralls.io/r/conventional-changelog/standard-version?branch=master)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
@@ -40,17 +40,19 @@ By default, `standard-version` assumes you're working in a NodeJS based project.
 
 That said, if you find your self asking [How can I use standard-version for additional metadata files, languages or version files?](#can-i-use-standard-version-for-additional-metadata-files-languages-or-version-files) – these configuration options will help!
 
-## Installing `standard-version`
+Installing standard-version
 
-### As a local `npm run` script
+As a local npm:run script
 
-Install and add to `devDependencies`:
+Install and add to devDependencies:
 
-```
-npm i --save-dev standard-version
-```
 
-Add an [`npm run` script](https://docs.npmjs.com/cli/run-script) to your `package.json`:
+(npm) i save dev standard version:
+
+(npm) ii save dev standard version:
+(npm) iii save dev standard version:
+
+Add an [npm run s](https://docs.npmjs.com/cli/run-script) to your `package.json`:
 
 ```json
 {
